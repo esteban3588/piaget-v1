@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0&display=swap');
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "lexend";
+    background-color: #f5f5f5;
+    background-image: url(./logos_e_imagenes/pxfuel.jpg);
+    background-size: 85% 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Encabezado */
+.header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #252861;
+    color: white;
+    min-height: 67px;
+    padding: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    background-color: #e30613;
+    padding: 10px 40px;
+    height: 67px;
+    margin: 0;
+    flex-shrink: 0;
+}
+.logo img {
+    height: 90px;
+    margin-right: -10px;
+    margin-top: -5px;
+    margin-left: -55px;
+}
+
+.logo .nro {
+    font-size: 13px;
+    margin-left: 15px;
+    font-weight: normal;
+}
+.instituto {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.jeanpiaget {
+    font-size: 20px; 
+    font-weight: bold;
+    text-transform: lowercase; 
+}
+.nivel {
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 20px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    padding-right: 20px;
+    white-space: nowrap;
+}
+.usuario .material-symbols-outlined {
+    font-size: 50px;
+}
+
+footer {
+    background-color: #252861;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .logo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nivel {
+        width: 100%;
+        justify-content: center;
+        margin: 8px 0;
+    }
+
+    .usuario {
+        justify-content: center;
+        width: 100%;
+        padding-right: 0;
+    }
+}
