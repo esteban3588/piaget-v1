@@ -1,19 +1,21 @@
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
-import {AlumnoForm} from './pages/alumnoform'
-import {ListaAlumno} from './pages/listaalumno'
-import Navegacion from './components/navbar'
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navegacion from "./components/navbar";
+import Menu from "./pages/menu";
+import Secretaria from "./pages/secretaria";
+import Tutor from "./pages/tutor";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Navegacion />
       <Routes>
-        <Route path="/ListaAlumno" element={<ListaAlumno />} />
-        <Route path="/ListaAlumno-create" element={<AlumnoForm />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/secretaria" element={<Secretaria />} />
+        <Route path="/tutor" element={<Tutor />} />
       </Routes>
-    </BrowserRouter>
-  )
+    </Router>
+  );
 }
 
-
-export default App
+export default App;

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 from django.db import models
 from datetime import date
 
@@ -25,8 +25,9 @@ class Tutor(models.Model):
     nombre_tutor = models.CharField(max_length=35)
     apellido_tutor = models.CharField(max_length=35)
     telefono_tutor = models.CharField(max_length=15)
-    correo_tutor = models.EmailField(max_length=100)
+    correo_tutor = models.EmailField(max_length=100, unique=True)
     genero_tutor = models.CharField(max_length=1, choices=GENERO_OPCIONES, null=True, blank=True)
+
 
     class Meta:
         db_table = 'tutores'
