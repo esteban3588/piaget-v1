@@ -1,29 +1,66 @@
 from django.db import models
+from datetime import date
 
 class Tutor(models.Model):
     dni_tutor = models.IntegerField(primary_key=True)
     nombre_tutor = models.CharField(max_length=35)
-    apellido_tutor = models.CharField(max_length=35)
-    telefono_tutor = models.CharField(max_length=15)
-    correo_tutor = models.CharField(max_length=100)
+    apellido_tutor = models.CharField(max_length=50)
+    telefono_tutor = models.CharField(max_length=20)
+    correo_tutor = models.EmailField(max_length=100)
     GENERO_CHOICES = [('M', 'Masculino'), ('F', 'Femenino'), ('O', 'Otro')]
     genero_tutor = models.CharField(max_length=1, choices=GENERO_CHOICES)
 
-    def __str__(self):
-        return f"{self.nombre_tutor} {self.apellido_tutor}"
+    class Meta:
+        db_table = 'tutores'
+        managed = True
+        ordering = ['apellido_tutor', 'nombre_tutor']
 
+    def __str__(self):
+        return f"{self.apellido_tutor}, {self.nombre_tutor} (DNI: {self.dni_tutor})"
 
 class Alumno(models.Model):
+    GENERO_OPCIONES = [
+        ('M', 'Masculino'),
+        ('F', 'Femenino'),
+        ('O', 'Otro'),
+    ]
+
     dni_alumno = models.IntegerField(primary_key=True)
-    nombre_alumno = models.CharField(max_length=35)
-    apellido_alumno = models.CharField(max_length=35)
-    fecha_nacimiento_alumno = models.DateField()
-    GENERO_CHOICES = [('M', 'Masculino'), ('F', 'Femenino'), ('O', 'Otro')]
-    genero_alumno = models.CharField(max_length=1, choices=GENERO_CHOICES)
-    observaciones_alumno = models.TextField(blank=True, null=True)
+    nombre_alumno = models.CharField(max_length=50)
+    apellido_alumno = models.CharField(max_length=50)
+    fecha_nacimiento_alumno = models.DateField(null=False, blank=False)  # obligatorio
+    genero_alumno = models.CharField(max_length=1, choices=GENERO_OPCIONES, null=True, blank=True)  # opcional
+
+    class Meta:
+        db_table = 'alumnos'
+        managed = True
+        ordering = ['apellido_alumno', 'nombre_alumno']
 
     def __str__(self):
-        return f"{self.nombre_alumno} {self.apellido_alumno}"
+        return f"{self.apellido_alumno}, {self.nombre_alumno} (DNI: {self.dni_alumno})"
+
+    def get_edad(self):
+        today = date.today()
+        return today.year - self.fecha_nacimiento_alumno.year - (
+            (today.month, today.day) < (self.fecha_nacimiento_alumno.month, self.fecha_nacimiento_alumno.day)
+        )
+
+    def obtener_tutores(self):
+
+        return [
+            {
+                'dni_tutor': axt.tutor.dni_tutor,
+                'nombre': axt.tutor.nombre_tutor,
+                'apellido': axt.tutor.apellido_tutor,
+                'telefono': axt.tutor.telefono_tutor,
+                'correo': axt.tutor.correo_tutor,
+                'genero': axt.tutor.genero_tutor,
+                'parentesco': axt.parentesco.parentesco_nombre
+            }
+            for axt in self.alumnoxtutor_set.select_related('tutor', 'parentesco').all()
+        ]
+
+
 
 
 class Parentesco(models.Model):
@@ -33,12 +70,16 @@ class Parentesco(models.Model):
     def __str__(self):
         return self.parentesco_nombre
 
-
 class AlumnoXTutor(models.Model):
-    id_alumno_x_tutor = models.AutoField(primary_key=True)
-    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
-    alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE)
+    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, related_name='alumnos')
+    alumno = models.ForeignKey(Alumno, on_delete=models.CASCADE, related_name='tutores')
     parentesco = models.ForeignKey(Parentesco, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['alumno', 'tutor'], name='unique_alumno_tutor')
+        ]
+        ordering = ['alumno', 'tutor']
 
     def __str__(self):
         return f"{self.alumno} - {self.tutor} ({self.parentesco})"
