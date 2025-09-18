@@ -11,12 +11,12 @@ class Tutor(models.Model):
     genero_tutor = models.CharField(max_length=1, choices=GENERO_CHOICES)
 
     class Meta:
-        db_table = 'tutores'
         managed = True
         ordering = ['apellido_tutor', 'nombre_tutor']
 
     def __str__(self):
         return f"{self.apellido_tutor}, {self.nombre_tutor} (DNI: {self.dni_tutor})"
+
 
 class Alumno(models.Model):
     GENERO_OPCIONES = [
@@ -28,11 +28,10 @@ class Alumno(models.Model):
     dni_alumno = models.IntegerField(primary_key=True)
     nombre_alumno = models.CharField(max_length=50)
     apellido_alumno = models.CharField(max_length=50)
-    fecha_nacimiento_alumno = models.DateField(null=False, blank=False)  # obligatorio
-    genero_alumno = models.CharField(max_length=1, choices=GENERO_OPCIONES, null=True, blank=True)  # opcional
+    fecha_nacimiento_alumno = models.DateField()
+    genero_alumno = models.CharField(max_length=1, choices=GENERO_OPCIONES, null=True, blank=True)
 
     class Meta:
-        db_table = 'alumnos'
         managed = True
         ordering = ['apellido_alumno', 'nombre_alumno']
 
@@ -46,7 +45,6 @@ class Alumno(models.Model):
         )
 
     def obtener_tutores(self):
-
         return [
             {
                 'dni_tutor': axt.tutor.dni_tutor,
@@ -61,14 +59,16 @@ class Alumno(models.Model):
         ]
 
 
-
-
 class Parentesco(models.Model):
     id_parentesco = models.AutoField(primary_key=True)
     parentesco_nombre = models.CharField(max_length=45)
 
+    class Meta:
+        managed = True
+
     def __str__(self):
         return self.parentesco_nombre
+
 
 class AlumnoXTutor(models.Model):
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, related_name='alumnos')
@@ -79,6 +79,7 @@ class AlumnoXTutor(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['alumno', 'tutor'], name='unique_alumno_tutor')
         ]
+        managed = True
         ordering = ['alumno', 'tutor']
 
     def __str__(self):
