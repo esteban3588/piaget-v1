@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'rest_framework.authtoken',
     'apps.Secretario',
+    'apps.Login'
 ]
 
 CORS_ALLOWED_ORIGINS =  [
     'http://localhost:5173',
-    'http://127.0.0.1:5173'
-                         
+    'http://127.0.0.1:5173',
 ]
 
 
