@@ -30,24 +30,24 @@ class GradoSerializer(serializers.ModelSerializer):
 class AlumnoXGradoSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlumnoXGrado
-        field = ('dni_alumno', 'id_grado', 'anio',)
+        fields = ('dni_alumno', 'id_grado', 'anio',)
 
 class RolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rol
-        field = ('nombre_rol',)
+        fields = ('nombre_rol',)
 
 class EmpleadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Empleado
-        field = '__all__'
+        fields = '__all__'
 
 class AsignaturaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Asignatura
-        field = '__all__'
+        fields = '__all__'
 
 class DictadoClaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = DictadoClase
-        field = '__all__'
+        fields = '__all__'

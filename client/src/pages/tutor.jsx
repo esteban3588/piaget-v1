@@ -1,4 +1,8 @@
 function Tutor() {
-  return <h1>Panel de Tutores</h1>;
+  return (
+    <div>
+      <h1>Panel de Tutores</h1>
+    </div>
+  );
 }
 export default Tutor;

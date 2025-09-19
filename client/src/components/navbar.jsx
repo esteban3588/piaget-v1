@@ -32,7 +32,7 @@ function Navegacion() {
 
       {/* Modal con Login */}
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-        <Login />
+        <Login onSuccess={() => setShowModal(false)} />
       </Modal>
     </header>
   );

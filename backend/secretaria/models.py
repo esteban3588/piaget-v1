@@ -173,6 +173,7 @@ class Empleado(models.Model):
     nombre_empleado = models.CharField(max_length=35)
     apellido_empleado = models.CharField(max_length=35)
     telefono_empleado = models.CharField(max_length=15, null=False)
+    correo_empleado = models.EmailField(max_length=100, unique=True)
     genero_empleado = models.CharField(max_length=1, choices=GENERO_OPCIONES)
     id_rol = models.IntegerField()  
     

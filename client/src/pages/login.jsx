@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import {
   loginUser,
   registerUser,
-  saveToken,
+  saveUserData,
 } from "../api/auth.api"; // uso de la api
 import "../style/login.css";
 
-function Login({ onSuccess }) {
+
+function Login({onSuccess}) {
   const navigate = useNavigate();
   const [activeForm, setActiveForm] = useState("login");
 
@@ -28,14 +29,21 @@ function Login({ onSuccess }) {
     e.preventDefault();
     try {
       const data = await loginUser(email, password);
-      saveToken(data.token); // Guardar token con la función
-      setMessage(" Inicio de sesión exitoso");
+      console.log("Login response:", data);
+      //se guarda token y el rol en localstorage
+      saveUserData(data);
+
+      //redirigir segun el rol
+      const rol =(data.rol || "").toLowerCase();
+      if (rol === "tutor") { navigate("/tutor"); onSuccess && onSuccess();
+      } else if (rol === "secretario") { navigate("/secretario"); onSuccess && onSuccess();
+      } else if (rol === "profesor") { navigate("/profesor"); onSuccess && onSuccess();
+      }
     } catch (error) {
       console.error(error);
-      setMessage(" Error al iniciar sesión");
+      setMessage(error?.response?.data?.message || "Error al iniciar sesión");
     }
   };
-
   // Manejo de Registro
   const handleRegister = async (e) => {
     e.preventDefault();
