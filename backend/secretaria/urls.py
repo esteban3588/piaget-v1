@@ -9,6 +9,7 @@ router.register(r'secretaria', views.AlumnosView, 'secretaria')
 router.register(r'tutores', views.TutorView, 'tutores')
 router.register(r'empleados', views.EmpleadoView, 'empleados')
 router.register(r'roles', views.RolView, 'roles')
+router.register(r'alumnos', views.AlumnosView, 'alumnos')
 
 urlpatterns = [
     path('', include(router.urls)),

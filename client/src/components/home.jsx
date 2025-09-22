@@ -1,7 +1,8 @@
-import Final from "../components/final";
+import React from "react";
+import Final from "./final";
 import "../style/home.css"
 
-function Secretario() {
+function Home() {
   return (
     <div>
       <div className="saludo">
@@ -11,11 +12,10 @@ function Secretario() {
       <div id="mover">
             <a href="/ListaAlumno-create" className="boton">Registrar Estudiante</a>  
             <a href="/ListaAlumno" className="boton">Modificar Alumno</a>
-            <a href="/RegistrarTutor" className="boton">Registrar Tutor</a>
       </div>
       <Final />
     </div>
   );
 }
 
-export default Secretario;
+export default Home;

@@ -11,6 +11,7 @@ from rest_framework import viewsets
 class AlumnosView(viewsets.ModelViewSet):
     queryset = Alumno.objects.all()
     serializer_class = AlumnoSerializer
+    
 
 class TutorView(viewsets.ModelViewSet):
     queryset = Tutor.objects.all()
