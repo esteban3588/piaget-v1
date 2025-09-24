@@ -11,6 +11,7 @@ import RutaPrivada from "./components/privateroute";
 import Profesor from "./pages/profesor";
 import Login from "./pages/login";
 import Final from "./components/final";
+
 function App() {
   return (
     <Router>

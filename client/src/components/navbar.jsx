@@ -1,30 +1,25 @@
-import React, { useState } from "react";
-import Modal from "./modal";
-import Login from "../pages/login";
-import "../style/menu.css";
+import { useState, useEffect } from "react";
+import { getToken } from "../api/auth.api";
+import LogoutButton from "./logoutbutton";
 
-function Navegacion() {
-  const [showModal, setShowModal] = useState(false);
+function Navbar() {
+  const [token, setToken] = useState(getToken());
+
+  // Escucha cambios en localStorage para actualizar el estado
+  useEffect(() => {
+    const handleStorageChange = () => setToken(getToken());
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   return (
-    <div className="menu">
-      <div className="header">
-        <div className="logo">
-          <img src="https://iili.io/KTpR0j1.png" alt="Logo" />
-          <b className="instituto">Instituto</b>
-          <b className="jeanpiaget">Jean Piaget</b>
-          <b className="nro">Nº8048</b>
-        </div>
-
-        <div className="nivel">Nivel Secundario</div>
-      </div>
-
-      {/* Modal con Login */}
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-        <Login onSuccess={() => setShowModal(false)} />
-      </Modal>
-    </div>
+    <nav>
+      {token && <LogoutButton />}
+    </nav>
   );
 }
 
-export default Navegacion;
+export default Navbar;

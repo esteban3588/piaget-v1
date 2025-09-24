@@ -7,23 +7,27 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import viewsets
+#from rest_framework.permissions import IsAuthenticated
 
 class AlumnosView(viewsets.ModelViewSet):
     queryset = Alumno.objects.all()
     serializer_class = AlumnoSerializer
-    
+    # permission_classes = [IsAuthenticated]
 
 class TutorView(viewsets.ModelViewSet):
     queryset = Tutor.objects.all()
     serializer_class = TutorSerializer
+    # permission_classes = [IsAuthenticated]
 
 class EmpleadoView(viewsets.ModelViewSet):
     queryset = Empleado.objects.all()
     serializer_class = EmpleadoSerializer
+    # permission_classes = [IsAuthenticated]
 
 class RolView(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
     serializer_class = RolSerializer
+    # permission_classes = [IsAuthenticated]
 
 class RegisterView(APIView):
     def post(self, request):
@@ -106,3 +110,16 @@ class LoginView(APIView):
             "token": str(refresh.access_token),
             "rol": rol
         }, status=status.HTTP_200_OK)
+"""
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]  # Solo usuarios autenticados pueden hacer logout
+
+    def post(self, request):
+        try:
+            refresh_token = request.data.get("refresh")
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"message": "Sesión cerrada correctamente"}, status=status.HTTP_205_RESET_CONTENT)
+        except Exception:
+            return Response({"error": "Token inválido o ya caducado"}, status=status.HTTP_400_BAD_REQUEST)
+"""

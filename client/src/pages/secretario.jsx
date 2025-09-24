@@ -1,9 +1,10 @@
 import Final from "../components/final";
 import "../style/home.css"
-
+import Navbar from "../components/navbar";
 function Secretario() {
   return (
     <div>
+      <Navbar />
       <div className="saludo">
           <h2>Bienvenido al Instituto Jean Piaget</h2>
           <p>Brindamos educación secundaria de calidad.</p>
