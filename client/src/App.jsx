@@ -7,15 +7,15 @@ import DetalleAlumno from './pages/detalleAlumno'
 import ModificarAlumno from './pages/modificarAlumno'
 import Tutor from "./pages/tutor";
 import Menu from "./pages/menu";
-import Navegacion from "./components/navbar";
 import RutaPrivada from "./components/privateroute";
 import Profesor from "./pages/profesor";
-
+import Login from "./pages/login";
+import Final from "./components/final";
 function App() {
   return (
     <Router>
-    <Navegacion/>
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/secretario" element={<RutaPrivada role="secretario"><Secretario/></RutaPrivada>} />
         <Route path="/ListaAlumno" element={<AlumnoList />} />
         <Route path="/ListaAlumno-create" element={<AlumnoForm />} />
@@ -24,8 +24,8 @@ function App() {
         <Route path='/ModificarAlumno' element={<ModificarAlumno/>} />
         <Route path="/tutor" element={<RutaPrivada role="tutor"><Tutor/></RutaPrivada>} />
         <Route path="/profesor" element={<RutaPrivada role="profesor"><Profesor/></RutaPrivada>} />
-        <Route path="/menu" element={<Menu />} />
       </Routes>
+      <Final />
     </Router>
   );
 }

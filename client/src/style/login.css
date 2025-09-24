@@ -5,19 +5,18 @@
     align-items: center;
     min-height: 350px;
     padding: 10px;
-    background: #062d4e;
+    background: #252861;
 }
 
 /* Contenedor del login y registro */
 .login-container {
     display: flex;
-    background: #e00d0d;
+    background: #252861;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    max-width: 650px;
+    max-width: 750px;
     width: 100%;
-    
 }
 
 /* Panel lateral */

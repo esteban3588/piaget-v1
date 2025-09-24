@@ -58,6 +58,7 @@ function Login({onSuccess}) {
   };
 
   return (
+    <body>
     <div className="login-page">
       <div className="login-container">
         {/* Panel lateral */}
@@ -138,6 +139,7 @@ function Login({onSuccess}) {
         </div>
       </div>
     </div>
+    </body>
   );
 }
 
