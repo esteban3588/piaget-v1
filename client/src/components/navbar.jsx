@@ -7,7 +7,7 @@ function Navegacion() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <header className="menu">
+    <div className="menu">
       <div className="header">
         <div className="logo">
           <img src="https://iili.io/KTpR0j1.png" alt="Logo" />
@@ -17,24 +17,13 @@ function Navegacion() {
         </div>
 
         <div className="nivel">Nivel Secundario</div>
-
-        {/* Icono Usuario */}
-        <div className="usuario">
-          <span 
-            className="material-symbols-outlined"
-            onClick={() => setShowModal(true)}
-            style={{ cursor: "pointer" }}
-          >
-            account_circle
-          </span>
-        </div>
       </div>
 
       {/* Modal con Login */}
       <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
         <Login onSuccess={() => setShowModal(false)} />
       </Modal>
-    </header>
+    </div>
   );
 }
 
