@@ -21,42 +21,46 @@ body {
 .header {
     display: flex;
     flex-wrap: nowrap;
-
-    align-items: center;
-    background-color: #e30613;
-    color: white;
-    min-height: 60px;
-    padding: 0 20px;
-    margin-right: 1.45%;
-    margin-left: 1.45%;
-    margin-top: 0.5%;
-    margin-bottom: auto;
-}
-
-
-.logo {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: #252861;
+    color: white;
+    min-height: 50px;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  background-color: #e30613;
+  padding:  0 10px 0 5px;
+  height: 100%;
+}
+
+.logo-perf{
+    display: flex;
+    align-items: center;
+    background-color: #e30613;
     padding: 5px 10px;
-    height: 67px;
+    height: 65px;
     margin: 0;
     flex-shrink: 0;
 }
-.logo img {
-    height: 90px;
+.logo-perf img {
+    height: 80px;
     margin-right: 0px;
-    margin-top: -5px;
-    margin-left: 0px;
+    margin-top: -8px;
+    margin-left: -25px;
 }
 
-.logo .nro {
+.logo-perf .nro {
     font-size: 13px;
     margin-left: 15px;
     font-weight: normal;
 }
 .instituto {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -85,18 +89,6 @@ body {
 .usuario .material-symbols-outlined {
     font-size: 28px;
 }
-
-.footer {
-    background-color: #252861;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;    
-}
-
-
 
 /* RESPONSIVE */
 @media (max-width: 768px) {

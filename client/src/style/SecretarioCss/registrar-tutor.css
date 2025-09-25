@@ -35,9 +35,14 @@ select
 .flex-row {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
+    margin-top: 20px;
     justify-content: center;
     gap: 200px;
+    
+}
+
+#mover-genero-ap{
+    margin-right: 10px;
 }
 
 #email {
@@ -48,10 +53,6 @@ select
     margin-right: 10%;
 }
 
-#email-label {
-    margin-left: 15%;
-    margin-top: 10px;
-}
 
 #botones {
     display: flex;

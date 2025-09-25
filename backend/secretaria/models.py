@@ -24,7 +24,7 @@ class Tutor(models.Model):
     dni_tutor = models.IntegerField(primary_key=True)
     nombre_tutor = models.CharField(max_length=35)
     apellido_tutor = models.CharField(max_length=35)
-    telefono_tutor = models.CharField(max_length=15)
+    telefono_tutor = models.CharField(max_length=15, null=True)
     correo_tutor = models.EmailField(max_length=100, unique=True)
     genero_tutor = models.CharField(max_length=1, choices=GENERO_OPCIONES, null=True, blank=True)
 
@@ -126,9 +126,9 @@ class Grado(models.Model):
 
 class AlumnoXGrado(models.Model):
     id_alumno_x_grado = models.AutoField(primary_key=True)
-    dni_alumno = models.IntegerField()  
-    id_grado = models.IntegerField()  
-    anio = models.IntegerField()
+    dni_alumno = models.ForeignKey(Alumno, on_delete=models.RESTRICT)
+    id_grado = models.ForeignKey(Grado, on_delete=models.RESTRICT)
+    anio = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         db_table = 'alumnos_x_grados'
@@ -153,12 +153,17 @@ class AlumnoXGrado(models.Model):
 
 class Rol(models.Model):
     id_rol = models.AutoField(primary_key=True)
-    nombre_rol = models.CharField(max_length=45)
+    nombre_rol = models.CharField(max_length=45, unique=True)
     
     class Meta:
         db_table = 'roles'
         managed = True
         
+    def save(self, *args, **kwargs):
+        # normalizar a minúsculas y quitar espacios
+        self.nombre_rol = self.nombre_rol.strip().lower()
+        super().save(*args, **kwargs) 
+
     def __str__(self):
         return self.nombre_rol
 
@@ -175,7 +180,7 @@ class Empleado(models.Model):
     telefono_empleado = models.CharField(max_length=15, null=False)
     correo_empleado = models.EmailField(max_length=100, unique=True)
     genero_empleado = models.CharField(max_length=1, choices=GENERO_OPCIONES)
-    id_rol = models.IntegerField()  
+    id_rol = models.ForeignKey(Rol, on_delete=models.RESTRICT)  
     
     class Meta:
         db_table = 'empleados'

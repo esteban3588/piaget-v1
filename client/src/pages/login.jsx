@@ -29,6 +29,12 @@ function Login({ onSuccess }) {
     e.preventDefault();
     try {
       const data = await loginUser(email, password);
+
+       // Guardar el usuario en localStorage
+    localStorage.setItem("usuario", JSON.stringify({
+      username: data.name || data.username || "Usuario",
+      rol: data.rol
+    }));
       saveUserData(data);
 
       const rol = (data.rol || "").toLowerCase();
@@ -40,6 +46,12 @@ function Login({ onSuccess }) {
         onSuccess && onSuccess();
       } else if (rol === "profesor") {
         navigate("/profesor");
+        onSuccess && onSuccess();
+      } else if (rol === "director") {
+        navigate("/director");
+        onSuccess && onSuccess();
+      } else if (rol === "rector") {
+        navigate("/rector");
         onSuccess && onSuccess();
       }
     } catch (error) {
@@ -61,6 +73,8 @@ function Login({ onSuccess }) {
     setActiveForm("login");
   } catch (error) {
     setMessage("Error al registrar usuario");
+    console.error(error);
+    setMessage(error.message);
   }
 };
 
@@ -75,6 +89,7 @@ function Login({ onSuccess }) {
                 <p className="institute-number">N°8048</p>
           </div>
         </div>
+        
 
         {/* Columna derecha */}
         <div className="login-right">

@@ -1,6 +1,6 @@
 import React from "react";
 import Final from "./final";
-import "../style/home.css"
+import "../style/SecretarioCss/home.css";
 
 function Home() {
   return (

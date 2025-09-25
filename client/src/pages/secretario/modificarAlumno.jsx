@@ -1,12 +1,8 @@
-import SuccessModal from "../components/confirmacio"
+import SuccessModal from "../../components/confirmacio";
 import React, { useState } from 'react';
 
 function ModificarAlumno(){
-    const [showModal, setShowModal] = useState(false);
-        
-        const handleFinalizar = () => {
-            setShowModal(true);
-        };
+   
     return (
         <div>
             <h1 id="titulo">Modificar información del alumno</h1>

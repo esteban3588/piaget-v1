@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react"
-import { getAllAlumnos } from "../api/alumnos.api"
-import "../style/AlumnosList.css"
-import Ventana_Emergente_Eliminar from "../components/ventana-emergente-elimnar";
+import { useEffect, useState } from "react";
+import { getAllAlumnos } from "../../api/alumnos.api";
+import { useNavigate} from "react-router";
+import "../../style/SecretarioCss/AlumnosList.css";
+import Ventana_Emergente_Eliminar from "../../components/ventana-emergente-elimnar";
+
 
 function AlumnoList() {
+
+    const navigate = useNavigate()
+
     const [alumnos, setAlumnos] = useState([]);
     useEffect(() => {
         async function loadAlumnos() {
             const res = await getAllAlumnos();
-            setAlumnos(res.data);
-            console.log(res.data)
+            setAlumnos(res.data); 
         }
         loadAlumnos();
     }, []);
@@ -25,7 +29,7 @@ function AlumnoList() {
     <div className="centrar">
       <div className="cabezera">
             <div id="boton-volver">
-              <a href="/secretario" className="boton">Volver</a>
+              <a href="/home" className="boton">Volver</a>
             </div>
             <h1 id="listar-alumno">Lista de Alumnos</h1>
             <a href="/ListaAlumno-create" className="boton" >Añadir alumno</a>
@@ -39,7 +43,7 @@ function AlumnoList() {
           <tr>
             <th>
               <label>DNI:</label>
-              <input type="text"/>
+              <input type="number"/>
             </th>
             <th>
               <label>Nombre:</label>
@@ -78,7 +82,7 @@ function AlumnoList() {
               <td>
                   <div id="botones-th"> 
                     <a href="/DetalleAlumno" className="boton">Ver Datos</a>
-                    <a href="/ModificarAlumno" className="boton">Modificar</a>
+                    <button onClick={() => navigate("/ModificarAlumno/" + alumno.dni_alumno)} className="boton">Modificar</button>
                     <button onClick={() => setShowModal(true)} className="boton">Eliminar</button>
                     <Ventana_Emergente_Eliminar
                       visible={showModal}

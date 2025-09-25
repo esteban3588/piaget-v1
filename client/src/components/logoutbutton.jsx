@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../api/auth.api";
+import "../style/logout.css"
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -9,7 +10,13 @@ function LogoutButton() {
     navigate("/", { replace: true }); //redirige al login
   };
 
-  return <button onClick={handleLogout}>Cerrar sesión</button>;
+  return (
+    <div className="cerrar-sesion">
+      <button onClick={handleLogout}>
+      Cerrar sesión
+    </button>
+    </div>
+    );
 }
 
 export default LogoutButton;

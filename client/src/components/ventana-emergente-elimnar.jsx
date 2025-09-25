@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/confirmacio.css";
+import "../style/SecretarioCss/confirmacio.css";
 
 function Ventana_Emergente_Eliminar({ visible, message = "¿Desea eliminar?", onClose }) {
   if (!visible) return null;

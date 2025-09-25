@@ -3,7 +3,7 @@
     justify-content: flex-end;  /* manda el card hacia la derecha */
     align-items: flex-start;    /* lo sube, elimina espacio extra */
     min-height: 100vh;
-    padding: 40px 60px 20px 20px; /* menos espacio arriba, más margen derecho */
+    padding: 40px 60px 70px 50px; /* menos espacio arriba, más margen derecho */
 }
 
 .login-card-row {

@@ -1,0 +1,97 @@
+/* ======== CONTENEDOR GENERAL ======== */
+#registrar-rol {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffffd9;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  font-family: "Lexend", sans-serif;
+}
+
+/* ======== TÍTULO ======== */
+#registrar-rol h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #1b1f71;
+  margin-bottom: 20px;
+}
+
+/* ======== MENSAJE ======== */
+#mensaje-rol {
+  color: #e30613;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* ======== FORMULARIO ======== */
+#registrar-rol form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ======== INPUT ======== */
+#registrar-rol input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+#registrar-rol input:focus {
+  border-color: #1b1f71;
+  outline: none;
+  box-shadow: 0 0 5px rgba(27, 31, 113, 0.4);
+}
+
+/* ======== BOTÓN GUARDAR ======== */
+#registrar-rol button {
+  background: #1b1f71;
+  color: #fff;
+  padding: 12px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#registrar-rol button:hover {
+  background: #e30613;
+}
+
+/* ======== BOTÓN VOLVER ======== */
+#boton-volver {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#boton-volver .boton {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #777;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#boton-volver .boton:hover {
+  background: #1b1f71;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 600px) {
+  #registrar-rol {
+    width: 90%;
+    padding: 15px;
+  }
+  #registrar-rol h2 {
+    font-size: 1.6rem;
+  }
+}

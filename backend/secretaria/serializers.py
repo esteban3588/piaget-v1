@@ -30,17 +30,43 @@ class GradoSerializer(serializers.ModelSerializer):
 class AlumnoXGradoSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlumnoXGrado
-        fields = ('dni_alumno', 'id_grado', 'anio',)
+        fields = ('dni_alumno', 'id_grado')
+        read_only_fields = ('anio',)
 
 class RolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rol
-        fields = ('nombre_rol',)
+        fields = "__all__"
+
+    def validate_nombre_rol(self, value):
+        # Normalizar el nombre
+        valor_normalizado = value.strip().lower()
+        if Rol.objects.filter(nombre_rol=valor_normalizado).exists():
+            raise serializers.ValidationError("Ese rol ya existe ")
+        return valor_normalizado
 
 class EmpleadoSerializer(serializers.ModelSerializer):
+     #  esto hace que DRF acepte `id_rol` como un número (PrimaryKey)
+    id_rol = serializers.PrimaryKeyRelatedField(
+        queryset=Rol.objects.all()
+    )
+    #  esto es opcional: mostrar también el nombre del rol en las respuestas
+    rol_nombre = serializers.CharField(
+        source='id_rol.nombre_rol', read_only=True
+    )
+
     class Meta:
         model = Empleado
-        fields = '__all__'
+        fields = [
+            'dni_empleado',
+            'nombre_empleado',
+            'apellido_empleado',
+            'telefono_empleado',
+            'correo_empleado',
+            'genero_empleado',
+            'id_rol',        # se envía un número (id del rol)
+            'rol_nombre'     # se recibe como solo lectura
+        ]
 
 class AsignaturaSerializer(serializers.ModelSerializer):
     class Meta:

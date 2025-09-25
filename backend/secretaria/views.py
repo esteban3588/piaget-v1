@@ -1,8 +1,10 @@
-from .models import Tutor, Empleado, Rol, Alumno
+from .models import Tutor, Empleado, Rol, Alumno, Grado, AlumnoXGrado
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-from .serializers import TutorSerializer, EmpleadoSerializer, AlumnoSerializer, RolSerializer
+from .serializers import TutorSerializer, EmpleadoSerializer, AlumnoSerializer, RolSerializer, GradoSerializer, AlumnoXGradoSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -22,12 +24,22 @@ class TutorView(viewsets.ModelViewSet):
 class EmpleadoView(viewsets.ModelViewSet):
     queryset = Empleado.objects.all()
     serializer_class = EmpleadoSerializer
+    lookup_field = 'dni_empleado'
     # permission_classes = [IsAuthenticated]
 
 class RolView(viewsets.ModelViewSet):
     queryset = Rol.objects.all()
     serializer_class = RolSerializer
     # permission_classes = [IsAuthenticated]
+
+class GradoView(viewsets.ModelViewSet):
+    serializer_class= GradoSerializer
+    queryset = Grado.objects.all()
+
+class AlumnoXGradoView(viewsets.ModelViewSet):
+    serializer_class = AlumnoXGradoSerializer
+    queryset = AlumnoXGrado.objects.all()
+
 
 class RegisterView(APIView):
     def post(self, request):
@@ -59,11 +71,7 @@ class RegisterView(APIView):
 
         rol = "Tutor"
         if empleado:
-            try:
-                rol_obj = Rol.objects.get(id_rol=empleado.id_rol)
-                rol = rol_obj.nombre_rol
-            except Rol.DoesNotExist:
-                rol = "Empleado"
+            rol = empleado.id_rol.nombre_rol
 
         return Response({
             "message": "Registro exitoso.",
@@ -98,11 +106,7 @@ class LoginView(APIView):
         rol = "Tutor"
         empleado = Empleado.objects.filter(correo_empleado=email).first()
         if empleado:
-            try:
-                rol_obj = Rol.objects.get(id_rol=empleado.id_rol)
-                rol = rol_obj.nombre_rol
-            except Rol.DoesNotExist:
-                rol = "Empleado"
+            rol = empleado.id_rol.nombre_rol
 
         refresh = RefreshToken.for_user(user)
         return Response({
@@ -110,6 +114,30 @@ class LoginView(APIView):
             "token": str(refresh.access_token),
             "rol": rol
         }, status=status.HTTP_200_OK)
+    
+
+def crear_empleado(request):
+    serializer = EmpleadoSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        print(serializer.errors)  # <-- VER ERROR DETALLADO EN CONSOLA
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def usuario_actual(request):
+    user = request.user
+    return Response({
+        "username": user.username,
+        "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name
+    })
+
 """
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]  # Solo usuarios autenticados pueden hacer logout

@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/confirmacio.css";
+import "../style/SecretarioCss/confirmacio.css";
 
 function SuccessModal({ visible, message = "¡Finalizado con éxito!", onClose }) {
   if (!visible) return null;

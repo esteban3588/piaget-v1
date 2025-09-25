@@ -1,13 +1,8 @@
-import SuccessModal from "../components/confirmacio"
+
 import React, { useState } from 'react';
-import Ventana_Emergente_Eliminar from "../components/ventana-emergente-elimnar";
+import Ventana_Emergente_Eliminar from "../../components/ventana-emergente-elimnar";
 
 function DetalleAlumno(){
-    const [showModal, setShowModal] = useState(false);
-        
-        const handleFinalizar = () => {
-            setShowModal(true);
-        };
     return (
         <div>
              <h1 id="titulo">Detalles del alumno</h1>
@@ -16,7 +11,7 @@ function DetalleAlumno(){
                 <div className="flex-row">     
                     <div className="top">
                         <label htmlFor="">DNI</label>
-                        <input type="text" />
+                        <input type="number" />
                     </div>
                     <div className="top">
                         <label htmlFor="">Nombre</label>

@@ -16,21 +16,14 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const customError =
-      error.response?.data?.message || "Error en la conexión con el servidor";
-    return Promise.reject(new Error(customError));
-  }
-);
 
 // Manejo centralizado de errores
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     const customError =
-      error.response?.data?.message || "Error en la conexión con el servidor";
+      error.response?.data?.message ||
+      error.response?.data?.error || "Error en la conexión con el servidor";
     return Promise.reject(new Error(customError));
   }
 );
@@ -73,6 +66,7 @@ export const logoutUser = () => {
   localStorage.removeItem("rol");
   localStorage.removeItem("name");
 };
+
 
 // Exportar cliente para otras llamadas
 

@@ -1,7 +1,7 @@
-import Final from "../components/final";
-import "../style/home.css"
-import Navbar from "../components/navbar";
-function Secretario() {
+import Final from "../../components/final";
+import "../../style/SecretarioCss/home.css";
+import Navbar from "../../components/navbar";
+function Home() {
   return (
     <div>
       <Navbar />
@@ -14,9 +14,9 @@ function Secretario() {
             <a href="/ListaAlumno" className="boton">Modificar Alumno</a>
             <a href="/RegistrarTutor" className="boton">Registrar Tutor</a>
       </div>
-      <Final />
+      
     </div>
   );
 }
 
-export default Secretario;
+export default Home;
