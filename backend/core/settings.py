@@ -44,9 +44,9 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'apps.login',
     'apps.profesores',
-    'apps.secretario',
-    'apps.tutor',
-    'apps.director',
+    'apps.secretarios',
+    'apps.tutores',
+    'apps.directores',
 ]
 
 MIDDLEWARE = [
@@ -83,10 +83,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# En core/settings.py
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'piagetdb',  # Replace with your database name
+        'USER': 'root',    # Replace with your MySQL username
+        'PASSWORD': 'Orange01', # Replace with your MySQL password
+        'HOST': 'localhost',          # Or the IP address/hostname of your MySQL server
+        'PORT': '3306',               # The port MySQL is running on (default is 3306)
     }
 }
 

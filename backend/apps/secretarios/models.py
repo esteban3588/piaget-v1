@@ -1,5 +1,5 @@
 from django.db import models
-from apps.tutor.models import Alumno
+from apps.tutores.models import Alumno
 
 class Grado(models.Model):
     id_grado = models.AutoField(primary_key=True)

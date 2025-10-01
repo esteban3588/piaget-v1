@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class DirectorConfig(AppConfig):
+class SecretarioConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.director'
+    name = 'apps.secretarios'

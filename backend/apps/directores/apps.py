@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TutorConfig(AppConfig):
+class DirectorConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.tutor'
+    name = 'apps.directores'

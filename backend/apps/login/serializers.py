@@ -27,5 +27,6 @@ class EmpleadoSerializer(serializers.ModelSerializer):
             'correo_empleado',
             'genero_empleado',
             'id_rol',
-            'rol_nombre'
+            'rol_nombre',  
+            'estado_empleado'
         ]
