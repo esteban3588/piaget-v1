@@ -9,8 +9,6 @@ def main():
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
-
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -21,8 +19,7 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
     
-BASE_DIR = Path(__file__).resolve().parent
-sys.path.append(str(BASE_DIR / 'apps'))
+
 
 if __name__ == '__main__':
     main()
