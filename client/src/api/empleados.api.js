@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const empleadosApi = axios.create({
-  baseURL: "http://127.0.0.1:8000/api", //backend Django
+  baseURL: "http://127.0.0.1:8000/api/directores", //backend Django
 });
 
 // Empleados

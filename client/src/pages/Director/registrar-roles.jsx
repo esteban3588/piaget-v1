@@ -15,7 +15,7 @@ function RegistrarRol() {
     }
 
     try {
-      await axios.post("http://127.0.0.1:8000/api/roles/", {
+      await axios.post("http://127.0.0.1:8000/api/directores/roles/", {
         nombre_rol: nombreRol.trim().toLowerCase(),
       });
       setMensaje("Rol registrado con éxito ");

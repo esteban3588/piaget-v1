@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'piagetdb',  # Replace with your database name
         'USER': 'root',    # Replace with your MySQL username
-        'PASSWORD': 'Orange01', # Replace with your MySQL password
+        'PASSWORD': 'HPK141CDAMD', # Replace with your MySQL password
         'HOST': 'localhost',          # Or the IP address/hostname of your MySQL server
         'PORT': '3306',               # The port MySQL is running on (default is 3306)
     }

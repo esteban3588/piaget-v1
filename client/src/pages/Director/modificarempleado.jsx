@@ -16,6 +16,7 @@ function ModificarEmpleado() {
     correo_empleado: "",
     genero_empleado: "",
     id_rol: "",
+    estado_empleado: "Activo",
   });
 
   const [roles, setRoles] = useState([]);
@@ -28,7 +29,7 @@ function ModificarEmpleado() {
       .catch((err) => console.error("Error cargando roles", err));
 
     // cargar datos del empleado por fetch directo
-    fetch(`http://127.0.0.1:8000/api/empleados/${dni}/`)
+    fetch(`http://127.0.0.1:8000/api/directores/empleados/${dni}/`)
       .then((res) => res.json())
       .then((data) => setEmpleado(data))
       .catch((err) => console.error("Error cargando empleado", err));
@@ -58,6 +59,21 @@ function ModificarEmpleado() {
     ) {
       setMensaje("Todos los campos son obligatorios");
       return;
+    }
+    // Validación extra: si se intenta desactivar un director
+    if (empleado.id_rol === 1 && empleado.estado_empleado === "Inactivo") {
+      try {
+        const res = await fetch("http://127.0.0.1:8000/api/directores/empleados/?rol=1&estado=Activo");
+        const data = await res.json();
+        if (data.length <= 1) {
+          setMensaje("Debe haber al menos un director activo");
+          return; // evita desactivar al último director
+        }
+      } catch (err) {
+        console.error("Error validando directores activos", err);
+        setMensaje("Error al validar directores activos");
+        return;
+      }
     }
 
     try {
@@ -99,7 +115,14 @@ function ModificarEmpleado() {
         </option>
       ))}
     </select>
-
+      <select 
+      name="estado_empleado" 
+      value={empleado.estado_empleado || ""} 
+      onChange={handleChange}
+    >
+      <option value="Activo">Activo</option>
+      <option value="Inactivo">Inactivo</option>
+    </select>
     <button id="boton-guardar" type="submit">Guardar Cambios</button>
   </form>
 

@@ -9,7 +9,7 @@ function MostrarEmpleados() {
   const [mensaje, setMensaje] = useState("");
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/empleados/")
+    axios.get("http://127.0.0.1:8000/api/directores/empleados/")
       .then((res) => setEmpleados(res.data))
       .catch((err) => {
         console.error("Error cargando empleados", err);

@@ -14,11 +14,10 @@ class Parentesco(models.Model):
 
 
 class Tutor(models.Model):
-    GENERO_OPCIONES = [
-        ('M', 'Masculino'),
-        ('F', 'Femenino'),
-        ('O', 'Otro'),
-    ]
+    GENERO_OPCIONES = [('M','Masculino'),('F','Femenino')]
+    ESTADO_OPCIONES = (
+    ('Activo', 'Activo'),
+    ('Inactivo', 'Inactivo'),)
 
     dni_tutor = models.IntegerField(primary_key=True)
     nombre_tutor = models.CharField(max_length=35)

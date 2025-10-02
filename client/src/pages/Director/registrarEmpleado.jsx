@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { crearEmpleado, listarRoles } from "../../api/empleados.api";
 import Perfil from "../../components/perfil";
 import "../../style/directorCss/RegistrarEmpleado.css"
+
 function RegistrarEmpleado() {
   const [empleado, setEmpleado] = useState({
     dni_empleado: "",
@@ -15,14 +16,17 @@ function RegistrarEmpleado() {
 
   const [roles, setRoles] = useState([]);
   const [mensaje, setMensaje] = useState("");
-
-  useEffect(() => {
+  const cargarRoles = () => {
     listarRoles()
       .then((res) => {
-        console.log("Roles recibidos:", res.data);
+        console.log("Roles cargados:", res.data);
         setRoles(res.data);
       })
       .catch((err) => console.error("Error cargando roles", err));
+  };
+
+  useEffect(() => {
+    cargarRoles();
   }, []);
 
   const handleChange = (e) => {
@@ -64,6 +68,7 @@ function RegistrarEmpleado() {
         genero_empleado: "",
         id_rol: "",
       });
+      cargarRoles();
     } catch (err) {
       console.error("Error al crear empleado:", err.response?.data || err);
       setMensaje("Error al registrar empleado. Revisa los datos.");
