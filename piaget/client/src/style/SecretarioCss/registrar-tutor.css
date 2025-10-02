@@ -1,0 +1,66 @@
+#centrar-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+#titulo {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.blank {
+    background: #c4bfbf;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    width: 800px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="tel"],      
+select
+    {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: center;
+    gap: 200px;
+    
+}
+
+#mover-genero-ap{
+    margin-right: 10px;
+}
+
+#email {
+    display: flex;
+    justify-content: center;
+    width: 70% ;
+    margin-left: 15%;
+    margin-right: 10%;
+}
+
+
+#botones {
+    display: flex;
+    justify-content: center; 
+    gap: 200px;              
+    margin-top: 20px;
+}
+
+#edad {
+    width: 180px;
+}

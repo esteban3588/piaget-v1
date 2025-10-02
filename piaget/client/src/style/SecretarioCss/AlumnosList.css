@@ -1,0 +1,108 @@
+
+.centrar {
+      text-align: center;
+      margin-top: 40px;
+    
+}
+
+table {
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+  }
+  
+  td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0)
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2;}
+  
+  tr:hover {background-color: #ddd;}
+  
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #242860;
+    color: white;
+}
+
+.botones {
+  border-radius: 5px;
+  margin-left: 20px;
+
+}
+
+button {
+  background-color: #242860; 
+  color: white;
+  border: 1px solid #ffffff;
+  padding: 12px 20px; /* arriba/abajo y izq/der) */
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 8px; 
+}
+
+#boton-search{
+  margin-left: 10%;
+}
+
+.boton-acciones{
+  display: flex;
+  justify-content: left;
+  margin-right: 100px;
+  margin-left:20px;
+}
+
+#botones-th{
+    display: flex;
+    justify-content: center; /* centra los botones dentro del td */
+    align-items: center;
+    gap: 20px; 
+    width: fit-content; /* se ajusta al contenido */
+    margin: 0 auto;  
+  }
+
+
+#listar {
+  margin-left: auto;
+}
+
+.cabezera {
+  display: flex;
+  align-items: center;        
+  justify-content: space-between; 
+  padding: 10px 20px;
+  background-color: none;
+  gap: 10px;
+}
+
+.cabezera h1 {
+  flex: 1;             
+  text-align: center;    
+  margin: 0;            
+}
+
+.cabezera .boton {
+  padding: 12px 16px;
+  border-radius: 8px;
+
+}
+
+#listar-alumno {
+  margin-left: 240px;
+}
+
+#tutor-boton {
+  margin-left: 6  0px;
+  margin-right: 20px;
+}
+
+#boton-volver {
+  margin-left: 20px;
+}

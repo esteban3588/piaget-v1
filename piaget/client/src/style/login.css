@@ -1,0 +1,181 @@
+.login-page {
+    display: flex;
+    justify-content: flex-end;  /* manda el card hacia la derecha */
+    align-items: flex-start;    /* lo sube, elimina espacio extra */
+    min-height: 100vh;
+    padding: 40px 60px 70px 50px; /* menos espacio arriba, más margen derecho */
+}
+
+.login-card-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;   /* tamaño total del card */
+    max-width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background: white;
+    min-height: calc(90vh - 40px);
+}
+
+/* Columna izquierda background: #252861; */
+.login-left {
+    background: #252861;
+    color: white;
+    flex: 2;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* Contenedor para logo + texto en fila */
+.login-institute {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* espacio entre logo y texto */
+}
+
+.login-left .logo {
+    width: 90px;
+    height: auto;
+    
+}
+
+.login-left h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.institute-number {
+    font-size: 14px;
+    margin: 2px 0 0;
+}
+
+/* Columna derecha */
+.login-right {
+    flex: 1;
+    background: #1a1c49;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+.login-header {
+    background: #C41014;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+}
+
+.login-form {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.login-form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.login-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #bb2222;
+    border-radius: 4px;
+    outline: none;
+}
+
+/* Botones */
+.btn-red {
+    background: #C41014;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-red:hover {
+    background: #e30613;
+}
+.btn-gray {
+    background: #555;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-gray:hover {
+    background: #777;
+}
+
+/* Divider */
+.divider {
+    border-top: 1px solid #555;
+    margin: 20px 0 10px;
+}
+.register-text {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Mensajes */
+.message {
+    text-align: center;
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+  padding-right: 40px; /* espacio para el ícono */
+}
+
+.password-wrapper .toggle-password {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.password-wrapper .eye-icon {
+  width: 25px;
+  height: 22px;
+    object-fit: contain;
+    opacity: 0.5;
+    transition: opacity 0.9s;
+    margin-top: -9px;
+}
+
+.eye-icon {
+  filter: invert(1); 
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.eye-icon.show {
+  transform: rotate(180deg);
+  filter: invert(50%) sepia(100%) saturate(300%) hue-rotate(200deg); /* ejemplo de color */
+}
+
+.eye-icon-red {
+  filter: invert(27%) sepia(98%) saturate(7459%) hue-rotate(356deg) brightness(99%) contrast(108%);
+}
+
+.eye-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.eye-icon:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
